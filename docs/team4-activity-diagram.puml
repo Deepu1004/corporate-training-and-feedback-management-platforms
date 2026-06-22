@@ -1,0 +1,74 @@
+@startuml
+skinparam dpi 200
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+skinparam ArrowColor #495057
+skinparam ArrowFontColor #495057
+skinparam ActivityBackgroundColor #EEF4FF
+skinparam ActivityBorderColor #3B5BDB
+skinparam ActivityBorderThickness 1
+skinparam ActivityDiamondBackgroundColor #FFF3BF
+skinparam ActivityDiamondBorderColor #F08C00
+skinparam ActivityDiamondFontColor #1C2536
+skinparam ActivityStartColor #2F9E44
+skinparam ActivityEndColor #E03131
+skinparam ConditionEndStyle hline
+
+title Team 4 — Feedback & Reports: Activity Diagram
+
+start
+repeat
+  :Show menu;
+  switch (Menu choice?)
+
+  case (Submit Feedback)
+    :Enter trainee, trainer, batch ids,\nrating, comments;
+    if (Valid input?\n(ids set, rating 1-5)) then (yes)
+      :Begin transaction;
+      :Build Feedback, link\ntrainer / trainee / batch by id;
+      :Persist feedback (DAO);
+      if (Commit) then (success)
+        :Show new feedback id; <<#D3F9D8>>
+      else (failure)
+        :Rollback transaction; <<#FFE3E3>>
+        :Show error; <<#FFE3E3>>
+      endif
+    else (no)
+      :Show validation error; <<#FFE3E3>>
+    endif
+
+  case (View Feedback)
+    if (Scope?) then (all)
+      :Fetch all feedback;
+    elseif (Scope?) then (by trainer)
+      :Enter trainer id;
+      :Fetch feedback by trainer;
+    else (by batch)
+      :Enter batch id;
+      :Fetch feedback by batch;
+    endif
+    :Display feedback list;
+
+  case (Reports)
+    if (Which report?) then (average)
+      :Compute AVG(rating);
+    elseif (Which report?) then (best)
+      :Find highest average trainer;
+    elseif (Which report?) then (lowest)
+      :Find lowest average trainer;
+    else (trainings)
+      :Enter trainer id;
+      :Count trainer's batches;
+    endif
+    :Display report result; <<#FFF4E6>>
+
+  case (Exit)
+    :Exit System;
+    stop
+
+  endswitch
+repeat while (more actions?) is (yes) not (no)
+stop
+@enduml
