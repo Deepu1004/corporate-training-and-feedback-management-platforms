@@ -6,12 +6,13 @@ import com.tnf.entity.Batch;
 import com.tnf.entity.Feedback;
 import com.tnf.entity.Trainee;
 import com.tnf.entity.Trainer;
+import com.tnf.exception.FeedbackNotFoundException;
+import com.tnf.exception.InvalidFeedbackException;
 import com.tnf.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
-import java.util.Optional;
 
 // Service layer for Feedback: validation + transaction boundary, delegates persistence to FeedbackDAO.
 public class FeedbackServiceImpl implements FeedbackService {
