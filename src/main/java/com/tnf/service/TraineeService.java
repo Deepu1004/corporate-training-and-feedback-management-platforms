@@ -1,6 +1,6 @@
 package com.tnf.service;
 
-import com.tnf.entities.Trainee;
+import com.tnf.entity.Trainee;
 
 import java.util.List;
 import java.util.Optional;

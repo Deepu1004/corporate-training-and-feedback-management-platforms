@@ -1,7 +1,7 @@
 package com.tnf.dao;
 
-import com.entities.Trainer;
-import com.util.HibernateUtil;
+import com.tnf.entity.Trainer;
+import com.tnf.util.HibernateUtil;
 import org.hibernate.Transaction;
 
 import java.util.List;

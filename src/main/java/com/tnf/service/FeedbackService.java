@@ -1,6 +1,6 @@
-package com.tnf.training.service;
+package com.tnf.service;
 
-import com.tnf.training.entity.Feedback;
+import com.tnf.entity.Feedback;
 
 import java.util.List;
 import java.util.Optional;

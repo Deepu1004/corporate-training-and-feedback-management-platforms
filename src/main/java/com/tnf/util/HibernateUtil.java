@@ -1,4 +1,4 @@
-package com.tnf.training.util;
+package com.tnf.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

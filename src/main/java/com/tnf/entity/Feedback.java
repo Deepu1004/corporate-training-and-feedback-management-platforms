@@ -1,4 +1,4 @@
-package com.tnf.training.entity;
+package com.tnf.entity;
 
 import jakarta.persistence.*;
 
@@ -23,7 +23,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "batch_id")
-    private TrainingBatch trainingBatch;
+    private Batch trainingBatch;
 
     public Long getFeedbackId() {
         return feedbackId;
@@ -66,7 +66,7 @@ public class Feedback {
     }
 
     public Feedback(Long feedbackId, Integer rating, String comments, Trainer trainer, Trainee trainee,
-            TrainingBatch trainingBatch) {
+            Batch trainingBatch) {
         this.feedbackId = feedbackId;
         this.rating = rating;
         this.comments = comments;
@@ -84,11 +84,11 @@ public class Feedback {
                 + trainer + ", trainee=" + trainee + ", trainingBatch=" + trainingBatch + "]";
     }
 
-    public TrainingBatch getTrainingBatch() {
+    public Batch getTrainingBatch() {
         return trainingBatch;
     }
 
-    public void setTrainingBatch(TrainingBatch trainingBatch) {
+    public void setTrainingBatch(Batch trainingBatch) {
         this.trainingBatch = trainingBatch;
     }
 

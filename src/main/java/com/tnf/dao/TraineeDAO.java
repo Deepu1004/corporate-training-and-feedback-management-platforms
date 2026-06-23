@@ -1,7 +1,7 @@
 package com.tnf.dao;
 import java.util.List;
 
-import com.tnf.entities.Trainee;
+import com.tnf.entity.Trainee;
 
 
 public interface TraineeDAO {

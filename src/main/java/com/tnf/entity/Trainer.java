@@ -25,7 +25,7 @@ public class Trainer {
     private String mobile;
 
     @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<TrainingBatches> t_batches;
+    private List<Batch> t_batches;
 
 //Constructor
     public Trainer(Long id, String name, List<String> technology, int experience, String email, String mobile) {

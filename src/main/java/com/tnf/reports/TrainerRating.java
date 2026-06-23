@@ -1,4 +1,4 @@
-package com.tnf.training.reports;
+package com.tnf.reports;
 
 // A trainer's average rating, used by the best/lowest trainer reports.
 public final class TrainerRating {

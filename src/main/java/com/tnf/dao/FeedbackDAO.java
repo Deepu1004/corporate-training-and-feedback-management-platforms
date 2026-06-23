@@ -1,6 +1,6 @@
-package com.tnf.training.dao;
+package com.tnf.dao;
 
-import com.tnf.training.entity.Feedback;
+import com.tnf.entity.Feedback;
 import org.hibernate.Session;
 
 import java.util.List;

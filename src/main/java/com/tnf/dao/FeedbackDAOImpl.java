@@ -1,11 +1,11 @@
-package com.tnf.training.dao;
+package com.tnf.dao;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.Session;
 
-import com.tnf.training.entity.Feedback;
+import com.tnf.entity.Feedback;
 
 // Hibernate implementation of FeedbackDAO. HQL assumes Trainer.trainerId and TrainingBatch.batchId (agree with Groups 1 & 2).
 public class FeedbackDAOImpl implements FeedbackDAO {
@@ -27,7 +27,7 @@ public class FeedbackDAOImpl implements FeedbackDAO {
 
     @Override
     public List<Feedback> findByTrainer(Session session, Long trainerId) {
-        return session.createQuery("FROM Feedback f WHERE f.trainer.trainerId = :trainerId", Feedback.class)
+        return session.createQuery("FROM Feedback f WHERE f.trainer.id = :trainerId", Feedback.class)
                 .setParameter("trainerId", trainerId)
                 .getResultList();
     }

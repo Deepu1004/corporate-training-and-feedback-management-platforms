@@ -1,7 +1,7 @@
 package com.tnf.service;
  
-import com.dao.TrainerDAO;
-import com.entities.Trainer;
+import com.tnf.dao.TrainerDAO;
+import com.tnf.entity.Trainer;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.tnf.training.reports;
+package com.tnf.reports;
 
 import java.util.Optional;
 

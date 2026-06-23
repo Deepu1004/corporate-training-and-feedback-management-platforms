@@ -2,7 +2,7 @@ package com.tnf.service;
 
 import com.tnf.dao.TraineeDAO;
 import com.tnf.dao.TraineeDAOImpl;
-import com.tnf.entities.Trainee;
+import com.tnf.entity.Trainee;
 import com.tnf.exception.TraineeNotFoundException;
 
 import java.util.List;

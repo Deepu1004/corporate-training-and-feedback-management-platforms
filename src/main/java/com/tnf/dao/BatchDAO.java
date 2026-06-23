@@ -1,10 +1,10 @@
-package com.tnf.training.dao;
+package com.tnf.dao;
 
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.tnf.training.entity.Batch;
-import com.tnf.training.util.HibernateUtil;
+import com.tnf.entity.Batch;
+import com.tnf.util.HibernateUtil;
 
 import java.util.List;
 import java.util.Optional;

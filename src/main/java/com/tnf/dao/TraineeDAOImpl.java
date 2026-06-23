@@ -3,60 +3,72 @@ package com.tnf.dao;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import com.tnf.entities.Trainee;
+import com.tnf.entity.Trainee;
+import com.tnf.util.HibernateUtil;
 
 public class TraineeDAOImpl implements TraineeDAO {
 
-    
-    private static final SessionFactory sessionFactory =
-            new Configuration().configure().buildSessionFactory();
-
     @Override
     public void registerTrainee(Trainee trainee) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(trainee);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.persist(trainee);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        }
     }
 
     @Override
     public Trainee findTrainee(Long traineeId) {
-        Session session = sessionFactory.openSession();
-        Trainee trainee = session.get(Trainee.class, traineeId);
-        session.close();
-        return trainee;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Trainee.class, traineeId);
+        }
     }
 
     @Override
     public void updateTrainee(Trainee trainee) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.update(trainee);
-        tx.commit();
-        session.close();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.merge(trainee);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        }
     }
 
     @Override
     public void deleteTrainee(Long traineeId) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        Trainee trainee = session.get(Trainee.class, traineeId);
-        if (trainee != null) {
-            session.delete(trainee);
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            Trainee trainee = session.get(Trainee.class, traineeId);
+            if (trainee != null) {
+                session.remove(trainee);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
         }
-        tx.commit();
-        session.close();
     }
+
     @Override
     public List<Trainee> getAllTrainees() {
-        Session session = sessionFactory.openSession();
-        List<Trainee> trainees = session.createQuery("from Trainee", Trainee.class).list();
-        session.close();
-        return trainees;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from Trainee", Trainee.class).list();
+        }
     }
 }

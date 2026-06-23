@@ -1,4 +1,4 @@
-package com.tnf.training.entity;
+package com.tnf.entity;
 
 
 import java.time.LocalDateTime;

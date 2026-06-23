@@ -1,12 +1,12 @@
-package com.tnf.training.main;
+package com.tnf.main;
 
-import com.tnf.training.entity.Feedback;
-import com.tnf.training.reports.ReportService;
-import com.tnf.training.reports.ReportServiceImpl;
-import com.tnf.training.reports.TrainerRating;
-import com.tnf.training.service.FeedbackService;
-import com.tnf.training.service.FeedbackServiceImpl;
-import com.tnf.training.util.HibernateUtil;
+import com.tnf.entity.Feedback;
+import com.tnf.reports.ReportService;
+import com.tnf.reports.ReportServiceImpl;
+import com.tnf.reports.TrainerRating;
+import com.tnf.service.FeedbackService;
+import com.tnf.service.FeedbackServiceImpl;
+import com.tnf.util.HibernateUtil;
 
 import java.util.List;
 import java.util.Optional;

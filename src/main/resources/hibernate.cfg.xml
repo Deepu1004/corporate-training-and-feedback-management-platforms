@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate_db?useSSL=false</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/corporate_training_and_feedback_management_platforms</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
 
@@ -18,9 +18,9 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Entity mappings (Corporate Training & Feedback Platform) -->
-        <mapping class="com.tnf.training.entity.Trainer"/>
-        <mapping class="com.tnf.training.entity.TrainingBatch"/>
-        <mapping class="com.tnf.training.entity.Trainee"/>
-        <mapping class="com.tnf.training.entity.Feedback"/>
+        <mapping class="com.tnf.entity.Trainer"/>
+        <mapping class="com.tnf.entity.Batch"/>
+        <mapping class="com.tnf.entity.Trainee"/>
+        <mapping class="com.tnf.entity.Feedback"/>
     </session-factory>
 </hibernate-configuration>

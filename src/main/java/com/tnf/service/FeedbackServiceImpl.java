@@ -1,12 +1,12 @@
-package com.tnf.training.service;
+package com.tnf.service;
 
-import com.tnf.training.dao.FeedbackDAO;
-import com.tnf.training.dao.FeedbackDAOImpl;
-import com.tnf.training.entity.Feedback;
-import com.tnf.training.entity.Trainee;
-import com.tnf.training.entity.Trainer;
-import com.tnf.training.entity.TrainingBatch;
-import com.tnf.training.util.HibernateUtil;
+import com.tnf.dao.FeedbackDAO;
+import com.tnf.dao.FeedbackDAOImpl;
+import com.tnf.entity.Batch;
+import com.tnf.entity.Feedback;
+import com.tnf.entity.Trainee;
+import com.tnf.entity.Trainer;
+import com.tnf.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -30,7 +30,7 @@ public class FeedbackServiceImpl implements FeedbackService {
             // Link by id only — getReference needs just the type, not the other teams' fields.
             feedback.setTrainee(session.getReference(Trainee.class, traineeId));
             feedback.setTrainer(session.getReference(Trainer.class, trainerId));
-            feedback.setTrainingBatch(session.getReference(TrainingBatch.class, batchId));
+            feedback.setTrainingBatch(session.getReference(Batch.class, batchId));
             feedbackDAO.save(session, feedback);
             tx.commit();
             return feedback;

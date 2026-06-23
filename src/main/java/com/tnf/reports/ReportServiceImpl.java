@@ -1,6 +1,6 @@
-package com.tnf.training.reports;
+package com.tnf.reports;
 
-import com.tnf.training.util.HibernateUtil;
+import com.tnf.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class ReportServiceImpl implements ReportService {
     public long getTrainingsConducted(Long trainerId) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
-                            "SELECT COUNT(b) FROM TrainingBatch b WHERE b.trainer.trainerId = :trainerId", Long.class)
+                            "SELECT COUNT(b) FROM Batch b WHERE b.trainer.id = :trainerId", Long.class)
                     .setParameter("trainerId", trainerId)
                     .uniqueResult();
         }
@@ -39,7 +39,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public long getTotalTrainingsConducted() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("SELECT COUNT(b) FROM TrainingBatch b", Long.class).uniqueResult();
+            return session.createQuery("SELECT COUNT(b) FROM Batch b", Long.class).uniqueResult();
         }
     }
 
@@ -48,8 +48,8 @@ public class ReportServiceImpl implements ReportService {
         String direction = descending ? "DESC" : "ASC";
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<Object[]> rows = session.createQuery(
-                            "SELECT f.trainer.trainerId, f.trainer.trainerName, AVG(f.rating) FROM Feedback f "
-                                    + "GROUP BY f.trainer.trainerId, f.trainer.trainerName "
+                            "SELECT f.trainer.id, f.trainer.name, AVG(f.rating) FROM Feedback f "
+                                    + "GROUP BY f.trainer.id, f.trainer.name "
                                     + "ORDER BY AVG(f.rating) " + direction, Object[].class)
                     .setMaxResults(1)
                     .getResultList();

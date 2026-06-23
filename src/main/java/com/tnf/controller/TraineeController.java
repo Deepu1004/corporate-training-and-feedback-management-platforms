@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import com.tnf.entities.Batch;
-import com.tnf.entities.Trainee;
+import com.tnf.entity.Batch;
+import com.tnf.entity.Trainee;
 import com.tnf.exception.TraineeNotFoundException;
 import com.tnf.service.TraineeService;
 import com.tnf.service.TraineeServiceImpl;
@@ -143,7 +143,7 @@ public class TraineeController {
         }
         try {
             Batch batch = new Batch();
-            batch.setBatchId(Integer.parseInt(input));
+            batch.setBatchId(Long.parseLong(input));
             return batch;
         } catch (NumberFormatException e) {
             System.out.println("Invalid Batch Id, skipping batch assignment.");
